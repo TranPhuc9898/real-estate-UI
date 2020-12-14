@@ -10,8 +10,8 @@ const UserItem = (props) => {
 
 
   //Confirm xoá user
-  const confirmDeleteHandler = async (event) => {
-    event.preventDefault();
+  const confirmDeleteHandler = async () => {
+    
     try {
       await sendRequest(
         `http://localhost:5000/api/users/${props.id}`,

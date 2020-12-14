@@ -204,7 +204,7 @@ const Details = (props) => {
                       </div>
                       <div className="col-lg-12 mt-25"></div>
                     </div>
-                    {auth.isAdmin && (
+                    {auth.isAdmin && loadedProducts.status !== -1 ? (
                       <div>
                         <button
                           className="btn btn-success"
@@ -213,7 +213,16 @@ const Details = (props) => {
                           ĐÃ BÁN
                         </button>
                       </div>
-                    )}
+                    ): (
+                      <div>
+                        <label
+                          className="btn btn-success"
+                          aria-disabled
+                        >
+                          SẢN PHẨM ĐÃ ĐƯỢC BÁN
+                        </label>
+                        </div>
+                    )} 
                   </div>
                 </div>
               </div>
