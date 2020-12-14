@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import { Route, useHistory } from "react-router-dom";
 import { useHttpClient } from "../shared/hooks/http-hook";
-import {Link } from 'react-router-dom'
 import ErrorModal from "../shared/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
 import Pagination from "../Products/Pagination";
-import TotalRevenue from './TotalRevenue'
-const Revenue = (props) => {
+
+const TotalRevenue = () => {
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
   const [loadedProducts, setLoadedProducts] = useState([]);
   const [total, setTotal] = useState();
-  const [value, onChange] = useState(new Date());
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(3);
-  const history = useHistory();
+  const [postsPerPage] = useState(10);
 
-  //Lấy dữ liệu của sản phẩm với status === -1 (Là những sản phẩm đã được bán)
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -32,7 +25,6 @@ const Revenue = (props) => {
     fetchProducts();
   }, [sendRequest]);
 
-  //Chuyển đổi thành tiền của tổng tiền các sản phẩm sang giá trị là "Tỷ"
   const onUpdateHandler = () => {
     let sum = 0;
     currentPosts.map((p) => {
@@ -45,22 +37,18 @@ const Revenue = (props) => {
     });
   };
 
-  //Phân trang
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  var currentPosts = loadedProducts.slice(indexOfFirstPost, indexOfLastPost).filter(p=>p.selledDate.slice(8,10).split(" ") == value.getDate());
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  //Lưu doanh thu vào database
   const onSaveHandler = async () => {
     try {
       let t = total * 0.2;
       await sendRequest(`http://localhost:5000/api/total/${t}`, "PATCH");
-      history.push("/revenue");
       alert("Lưu thành công !");
     } catch (error) {}
   };
-
+    
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  var currentPosts = loadedProducts.slice(indexOfFirstPost, indexOfLastPost)
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <React.Fragment>
@@ -73,22 +61,20 @@ const Revenue = (props) => {
       {!isLoading && (
         <React.Fragment>
           <div style={{ marginTop: "100px" }}>
-            <h4>Tìm kiếm doanh thu theo ngày tháng!</h4>
-            <Calendar
-              onChange={onChange}
-              value={value}
-              calendarType="ISO 8601"
-            />
-            <i className="lnr lnr-pointer-down" style={{marginLeft:"140px"}}></i><Link to="/totalRevenue"><h1>Tổng doanh thu</h1></Link><i className="lnr lnr-pointer-up" style={{marginLeft:"140px"}}></i>
-            <p style={{ color: "red", marginTop:"40px" }}>
-              Tổng số sản phẩm đã bán ngày {value.toLocaleString('en-GB', { timeZone: 'UTC' }).split(",")[0]} : {currentPosts.length}
+            
+            <p style={{ color: "red" }}>
+              Tổng số sản phẩm đã bán : {loadedProducts.length}
             </p>
           </div>
           <div>
-            <p style={{ color: "red" }}>tổng tiền đã bán ngày {value.toLocaleString('en-GB', { timeZone: 'UTC' }).split(",")[0]}: {total} tỉ</p>
+            <p style={{ color: "red" }}>
+              tổng tiền đã bán : {total} tỉ
+            </p>
           </div>
           <div>
-            <p style={{ color: "red" }}>tổng doanh thu ngày {value.toLocaleString('en-GB', { timeZone: 'UTC' }).split(",")[0]}: {total * 0.2} tỉ</p>
+            <p style={{ color: "red" }}>
+              tổng doanh thu : {total * 0.2} tỉ
+            </p>
           </div>
           <button
             type="button"
@@ -118,7 +104,6 @@ const Revenue = (props) => {
               </tr>
             </thead>
             <tbody>
-              {console.log(currentPosts)}
               {currentPosts.map((p) => (
                 <tr>
                   <th>{p.title}</th>
@@ -158,4 +143,4 @@ const Revenue = (props) => {
   );
 };
 
-export default Revenue;
+export default TotalRevenue;

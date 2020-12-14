@@ -30,7 +30,7 @@ const ProductItem = (props) => {
     boxSizing: "border-box",
   };
 
-
+  //Admin xác nhận sản phẩm để được hiển thị lên trang chủ
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -44,10 +44,10 @@ const ProductItem = (props) => {
           "Content-Type": "application/json",
         }
       );
-      // history.push("/" + auth.userId + "/submit");
-      // window.location.href=`/${auth.userId}/submit`
     } catch (error) {}
   };
+
+  //Admin xoá sản phẩm
   const onDeleteHandler = async (event) => {
     event.preventDefault();
     try {
@@ -55,45 +55,12 @@ const ProductItem = (props) => {
         `http://localhost:5000/api/products/${props.id}`,
         "DELETE"
       );
+      alert("Xoá thành công")
       history.push("/" + auth.userId + "/submit");
     } catch (error) {}
   };
 
-  // const OnLikeHandler = async () => {
-  //   if (!auth.isLoggedIn) {
-  //     alert("Vui lòng đăng nhập trước khi sử dụng chức năng này!!!");
-  //   } else {
-  //     let check = props.like.find((el) => el === auth.userId);
-  //     console.log(check);
-  //     if (check) {
-  //       setLoadedLike(props.like.length - 1);
-  //       // event.preventDefault();
-  //       try {
-  //         await sendRequest(
-  //           `http://localhost:5000/api/products/removelike/${props.id}/${auth.userId}`,
-  //           "DELETE"
-  //         );
-  //         alert("Unliked!");
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     } else {
-  //       setLoadedLike(props.like.length + 1);
-  //       console.log(loadedLike);
-  //       try {
-  //         // event.preventDefault();
-  //         await sendRequest(
-  //           `http://localhost:5000/api/products/like/${props.id}/${auth.userId}`,
-  //           "PATCH"
-  //         );
-  //         alert("Liked");
-  //       } catch (error) {
-  //         alert(error)
-  //       }
-  //     }
-  //   }
-  // };
-
+  //Xem chi tiết sản phẩm
   const onViewHandler = async (event) => {
     try {
       await sendRequest(
@@ -108,12 +75,6 @@ const ProductItem = (props) => {
 
   return (
     <React.Fragment>
-      {/* <ErrorModal
-        error={error}
-        onClear={clearError}
-        style={{ marginBottom: "20px" }}
-      /> */}
-
       {!isLoading && (
         <div className="col-lg-4">
           <div className="single-property">
@@ -124,7 +85,6 @@ const ProductItem = (props) => {
                 src={`http://localhost:5000/${props.img}`}
                 alt=""
               />
-              {/* <span>For Sale</span> */}
             </div>
 
             <div className="desc">
@@ -138,7 +98,7 @@ const ProductItem = (props) => {
                   <p>
                     Giá:{" "}
                     {props.price
-                      .toFixed(0)
+                      .toFixed(2)
                       .replace(".", ",")
                       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}{" "}
                     {props.currentcy}{" "}
@@ -153,10 +113,6 @@ const ProductItem = (props) => {
                 {" "}
                 Ngày đăng: {props.date}
               </div>
-              {/* <div style={{ fontSize: "14px", color: "red" }}>
-                {" "}
-                Hết hạn: {props.enddate}
-              </div> */}
               <div style={{ textAlign: "center" }}>
                 <Link to={`/${props.id}/details`}>
                   <p onClick={onViewHandler}> Click vào đây để xem chi tiết</p>

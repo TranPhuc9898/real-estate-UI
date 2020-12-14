@@ -7,6 +7,7 @@ import Pagination from './Pagination'
 import ErrorModal from "../shared/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
 
+//Trang quản lý sản phẩm
 const ManageProduct = (props) => {
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
   const [loadedProducts, setLoadedProducts] = useState([]);
@@ -17,6 +18,9 @@ const ManageProduct = (props) => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = loadedProducts.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = pageNumber => setCurrentPage(pageNumber);
+
+
+  //Lấy dữ liệu sản phẩm với status === 1 (là những sản phẩm đã được Admin kiểm duyệt)
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -31,8 +35,8 @@ const ManageProduct = (props) => {
     fetchProducts();
   }, [sendRequest]);
 
+  //Xoá sản phẩm
   const onDeleteHandler = async (p) => {
-    // event.preventDefault();
     try {
       await sendRequest(`http://localhost:5000/api/products/${p}`, "DELETE");
       history.push("/manageProduct");

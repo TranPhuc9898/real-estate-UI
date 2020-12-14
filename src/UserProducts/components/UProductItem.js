@@ -8,6 +8,7 @@ import LoadingSpinner from "../../shared/UIElements/LoadingSpinner";
 const UproductItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
+  //Xử lí sau 30 ngày kể từ ngày đăng sẽ tự động xoá sản phẩm
   useEffect(() => {
     const dateInterval = setInterval(() => {
       const date = dayjs();
@@ -22,6 +23,7 @@ const UproductItem = (props) => {
     };
   }, []);
 
+  //Xoá sản phẩm theo id
   const confirmDeleteHandler = async () => {
     try {
       await sendRequest(

@@ -82,7 +82,7 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-
+          alert("Đăng nhập thành công")
         auth.login(responseData.user.id);
         auth.authorization(responseData.user.role)
       } catch (error) {
@@ -101,7 +101,7 @@ const Auth = () => {
           "POST",
           formData
         );
-
+          alert("Đăng kí thành công!")
         auth.login(responseData.user.id);
       } catch (err) {
       }

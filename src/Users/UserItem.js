@@ -7,6 +7,9 @@ import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
 
 const UserItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+
+  //Confirm xoá user
   const confirmDeleteHandler = async (event) => {
     event.preventDefault();
     try {

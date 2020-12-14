@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import Logo from "../img/logo1.jpg";
 import { NavLink, Link, Route } from "react-router-dom";
 import { AuthContext } from "../shared/context/auth-context";
@@ -7,7 +7,9 @@ import Users from "../pages/Users";
 
 const Toolbar = (props) => {
   const auth = useContext(AuthContext);
-
+  const scroll = () => {
+    window.scrollBy(0, 10000);
+  }
   return (
     <header className="default-header">
       <div className="main-menu">
@@ -27,15 +29,19 @@ const Toolbar = (props) => {
                   <a href="asdasd.html">blog</a>
                   <ul>
                     <li>
-                      <a href="blog-home.html">Blog Home</a>
+                    <a href="https://heritageproperty.vn/grand-world-phu-quoc/?gclid=CjwKCAiAnIT9BRAmEiwANaoE1cu1Rk8LQYzjhUi9n_Zpf4GMylzd2akJavk4n-9w9MVYQ8Jec-AXjhoCj4YQAvD_BwE">
+                        Blog Home
+                      </a>
                     </li>
                     <li>
-                      <a href="single-blog.html">Blog Single</a>
+                    <a href="https://dxnt.vn/blog-single-author-big/">
+                        Blog Single
+                      </a>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="contact.html">Liên hệ</a>
+                  <a onClick={scroll}>Liên hệ</a>
                 </li>
 
                 {!auth.isLoggedIn && (
@@ -45,11 +51,6 @@ const Toolbar = (props) => {
                     </NavLink>
                   </li>
                 )}
-                {/* {auth.isLoggedIn &&  (
-                  <li>
-                    <NavLink to="/users">Users</NavLink>
-                  </li>
-                )}  */}
                 {auth.isLoggedIn && auth.isAdmin && (
                   <li>
                     <NavLink to="/manage">Quản Lý</NavLink>

@@ -14,6 +14,7 @@ import {useHttpClient} from '../../shared/hooks/http-hook'
 
     const userId = useParams().userId;
     
+    //Lấy ra sản phẩm theo người đăng 
     useEffect(()=>{
       const fetchProducts = async () => {
         try {
@@ -26,6 +27,7 @@ import {useHttpClient} from '../../shared/hooks/http-hook'
       fetchProducts();
     },[sendRequest, userId]);
   
+  //xoá sản phẩm
   const onDeleteHandler =(deletedProduct) => {
     setLoadedProducts(p => p.filter(product=> product.id !== deletedProduct ));
   }

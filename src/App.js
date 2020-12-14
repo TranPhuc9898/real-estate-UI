@@ -14,6 +14,7 @@ import UpdateUser from './Users/UserUpdate'
 import Submit from './Admin/Submittion'
 import Revenue from './Admin/Revenue'
 import ManageAdmin from './Users/ManageAdmin'
+import TotalRevenue from './Admin/TotalRevenue'
 
 import SearchDetail from './Admin/SearchDetail'
 
@@ -71,6 +72,7 @@ function App() {
         <Route path="/revenue" >
           <Revenue />          
         </Route>
+        <Route path="/TotalRevenue" component={TotalRevenue}/>
          <Route path="/:userId/products" exact>
           <UserProducts />
         </Route>

@@ -13,6 +13,7 @@ const SearchDetail = (props) => {
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
   const [loadedProducts, setLoadedProducts] = useState();
 
+  //Xử lý hàm search theo tên quận, tên thành phố và thể lại của sản phẩm
   useEffect(() => {
     const fetchProducts = async () => {
       try {

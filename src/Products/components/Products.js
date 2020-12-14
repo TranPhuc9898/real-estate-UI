@@ -9,10 +9,10 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 const Products = () => {
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
   const [loadedProducts, setLoadedProducts] = useState([]);
-  // const [pageProduct, setPageProduct] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
 
+  //Lấy sản phẩm với status === 1 (những sản phẩm đã được Admin kiểm duyệt)
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -27,6 +27,8 @@ const Products = () => {
     fetchProducts();
   }, [sendRequest]);
 
+
+  //Phân trang
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = loadedProducts.slice(indexOfFirstPost, indexOfLastPost);

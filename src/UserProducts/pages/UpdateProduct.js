@@ -54,6 +54,8 @@ const UpdatePlace = () => {
     false
   );
 
+
+  //lấy dữ liệu của sản phẩm theo id để tự động điền vào Input trước khi Admin thay đổi
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -94,6 +96,8 @@ const UpdatePlace = () => {
     fetchProducts();
   }, [sendRequest, productId, setFormData]);
 
+
+  //Lưu sản phẩm sau khi đã được cập nhật
   const productUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -111,6 +115,7 @@ const UpdatePlace = () => {
       {
         'Content-Type':'application/json'
       });
+      alert("Cập nhật thành công")
       history.push("/" +  auth.userId + "/products");
     } catch (error) {}
   };
@@ -172,6 +177,17 @@ const UpdatePlace = () => {
             initialValid={true}
           />
           <br/><br/>
+          { auth.isAdmin &&
+          <Input
+            id="currentcy"
+            element="input"
+            label="Đơn vị tiền"
+            disabled ="true"
+            onInput={inputHandler}
+            initialValue={loadedProducts.currentcy}
+            initialValid={true}
+          />}
+          <br/><br/>
           <Input
             id="area"
             element="input"
@@ -182,18 +198,6 @@ const UpdatePlace = () => {
             initialValue={loadedProducts.area}
             initialValid={true}
           />
-          <br/><br/>
-          { auth.isAdmin &&
-          <Input
-            id="status"
-            element="input"
-            label="Trạng thái"
-            validators={[VALIDATOR_ROLE()]}
-            errorText="Please enter a 0 or 1."
-            onInput={inputHandler}
-            initialValue={loadedProducts.status}
-            initialValid={true}
-          />}
           <br/><br/>
           <Button type="submit">
             UPDATE PLACE

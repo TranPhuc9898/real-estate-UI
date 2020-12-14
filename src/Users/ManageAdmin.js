@@ -8,6 +8,8 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 const ManageAdmin = (props) => {
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
   const [loadedUser, setLoadedUser] = useState([]);
+
+  //Lấy dữ liệu của user với role === 1 ( là những user được phân quyền Admin)
   useEffect(() => {
     const fetchProducts = async () => {
       try {

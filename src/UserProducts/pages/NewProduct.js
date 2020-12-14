@@ -26,6 +26,7 @@ const NewPlace = () => {
   const [district, setDistrict] = useState("1");
   const [currentcy, setCurrentcy] = useState("Triệu");
 
+  //Sử dụng form đã được custom để nhận những giá trị được nhập dưới Input
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
@@ -99,6 +100,7 @@ const NewPlace = () => {
 
   const history = useHistory();
 
+  //Submit sản phẩm lên database
   const productSubmitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -139,17 +141,6 @@ const NewPlace = () => {
         />
         <br />
         <br />
-        {/* <Input
-          id="productType"
-          element="select"
-          type="text"
-          label="Thể Loại"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid title."
-          onInput={inputHandler}
-        />
-        <br />
-        <br /> */}
         <form>
           <h4>Thể loại</h4>
           <select onChange={TypeChange} value={productType} className="form-control"
@@ -202,14 +193,6 @@ const NewPlace = () => {
         </form>
         <br />
         <br />
-        {/* <Input
-          id="street"
-          element="input"
-          label="Đường"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid Street."
-          onInput={inputHandler}
-        /> */}
         <form>
           <h4>Thành Phố</h4>
           <select onChange={cityChange} value={city} className="form-control"
@@ -221,14 +204,6 @@ const NewPlace = () => {
         </form>
         <br />
         <br />
-        {/* <Input
-          id="district"
-          element="input"
-          label="Quận"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid District."
-          onInput={inputHandler}
-        /> */}
         <form>
           <h4>Quận</h4>
           <select onChange={districtChange} value={district} className="form-control"

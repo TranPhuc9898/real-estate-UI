@@ -15,6 +15,7 @@ const Details = (props) => {
   const productId = useParams().productId;
   const auth = useContext(AuthContext);
 
+  //Tăng giảm lượt thích của sản phẩm
   useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -34,6 +35,8 @@ const Details = (props) => {
     fetchDetails();
   }, [sendRequest, productId]);
 
+
+  //Admin xác nhận sản phẩm đã được bán
   const onChangeHandler = async (event) => {
     event.preventDefault();
     try {
@@ -49,6 +52,8 @@ const Details = (props) => {
       );
     } catch (error) {}
   };
+
+  //Tăng giảm lượt thích của sản phẩm
   const OnLikeHandler = async () => {
     if (!auth.isLoggedIn) {
       alert("Vui lòng đăng nhập trước khi sử dụng chức năng này!!!");
@@ -136,41 +141,6 @@ const Details = (props) => {
                       />
                     </div>
                   </div>
-                  {/* <div className="col-lg-3  col-md-3">
-                    <div className="blog_info text-right">
-                      <ul className="blog_meta list">
-                        <li>
-                          <a>
-                            {loadedProducts.submition}
-                            {"\t"}
-                            <i className="lnr lnr-user"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            12 Dec, 2017{"\t"}
-                            <i className="lnr lnr-calendar-full"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            1.2M Views{"\t"}
-                            <i className="lnr lnr-eye"></i>
-                          </a>
-                        </li>
-                        <li>
-                          06 Comments{"\t"}
-                          <i className="lnr lnr-bubble"></i>
-                        </li>
-                        <li>
-                          <button onClick={OnLikeHandler}>
-                            {checking ? "Đã thích" : "Thích"  }  {"\t"}
-                            <i className="lnr lnr-heart"></i>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </div> */}
                   <div className="col-lg-9 col-md-9 blog_details">
                     <h1>Tên: {loadedProducts.title}</h1>
                     <hr />

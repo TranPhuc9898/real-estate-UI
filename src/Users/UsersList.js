@@ -7,6 +7,7 @@ const UsersList = (props) => {
   const [products, setProducts] = useState([]);
 
 
+  
   useEffect(()=> {
     setProducts(props.items)
   },[])
@@ -48,10 +49,10 @@ const UsersList = (props) => {
             <th scope="col">Tên</th>
             <th scope="col">Email</th>
             <th scope="col">Hình Ảnh</th>
-            <th scope="col">Option</th>
-            <th scope="col">Role</th>
+            <th scope="col">Tuỳ Chọn</th>
+            <th scope="col">Vai Trò</th>
           </tr>
-        </thead>
+        </thead> 
         <tbody>
           {results.map((user) => 
             <UserItem

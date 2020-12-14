@@ -9,6 +9,7 @@ const Submit = () => {
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
   const [loadedProducts, setLoadedProducts] = useState();
 
+  //Lấy dữ liệu sản phẩm với status === 0 (những sản phẩm chưa được admin duyệt)
   useEffect(() => {
     const fetchProducts = async () => {
       try {

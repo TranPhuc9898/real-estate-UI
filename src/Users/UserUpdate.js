@@ -49,6 +49,7 @@ const UpdateUser = () => {
     false
   );
 
+  //Lấy thông tin user theo id để điền sẵn thông tin trước khi Admin cập nhật
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -84,6 +85,7 @@ const UpdateUser = () => {
     fetchUsers();
   }, [sendRequest, userId, setFormData]);
 
+  //Lưu thông tin user sau khi được Admin cập nhật
   const userUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
