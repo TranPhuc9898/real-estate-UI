@@ -117,6 +117,7 @@ const NewPlace = () => {
       formData.append("productType", productType);
       formData.append("currentcy", currentcy);
       await sendRequest("http://localhost:5000/api/products", "POST", formData);
+      alert("Bạn đã đăng bài thành công. Hãy chờ Admin kiểm duyệt để được lên trang chủ nhé!")
       history.push("/");
     } catch (err) {}
   };

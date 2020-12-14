@@ -24,7 +24,7 @@ const Submit = () => {
     fetchProducts();
   }, [sendRequest]);
   return (
-    <React.Fragment>
+    <React.Fragment style={{marginTop:"200px"}}>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
@@ -36,7 +36,7 @@ const Submit = () => {
           <div className="container">
             <div className="row d-flex justify-content-center">
               <div className="col-md-10 header-text">
-                <h1>Sản phẩm dành cho bạn.</h1>
+                <h1></h1>
               </div>
             </div>
             <ProductList items={loadedProducts} />

@@ -26,7 +26,7 @@ const Toolbar = (props) => {
                   <Link to="/">Trang chủ </Link>
                 </li>
                 <li className="menu-has-children">
-                  <a href="asdasd.html">blog</a>
+                  <a aria-disabled>blog</a>
                   <ul>
                     <li>
                     <a href="https://heritageproperty.vn/grand-world-phu-quoc/?gclid=CjwKCAiAnIT9BRAmEiwANaoE1cu1Rk8LQYzjhUi9n_Zpf4GMylzd2akJavk4n-9w9MVYQ8Jec-AXjhoCj4YQAvD_BwE">

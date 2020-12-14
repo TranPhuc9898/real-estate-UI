@@ -20,8 +20,9 @@ const SearchDetail = (props) => {
         const responseData = await sendRequest(
           `http://localhost:5000/api/search/${district}/${city}/${type}`
         );
-        setLoadedProducts(responseData.product);
-        console.log(responseData.product);
+        const data = responseData.product.filter(p=> p.status === 1)
+        setLoadedProducts(data);
+        console.log(data);
       } catch (error) {}
     };
     fetchProducts();

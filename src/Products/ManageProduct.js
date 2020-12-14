@@ -98,7 +98,8 @@ const ManageProduct = (props) => {
                     <button
                       type="button"
                       class="btn btn-danger"
-                      onClick={() => onDeleteHandler(p.id)}
+                      onClick={() => {if(window.confirm("Bạn có chắc chắn muốn xoá chứ?")){ onDeleteHandler(p.id)}}}
+                      
                     >
                       Xoá
                     </button>

@@ -38,19 +38,19 @@ const UserItem = (props) => {
         <td>
           <Link to={`/${props.id}/updateInfo`}>
             <button type="button" class="btn btn-success">
-              UPDATE
+              Cập nhật
             </button>
           </Link>
           <button
             type="button"
             class="btn btn-danger"
-            onClick={confirmDeleteHandler}
+            onClick={() => {if(window.confirm("Bạn có chắc muốn xoá user này chứ ??")) {confirmDeleteHandler()}}}
           >
-            DELETE
+            Xoá
           </button>
           <Link to={`/${props.id}/products`}>
             <button type="button" class="btn btn-info">
-              INFO
+              Danh sách sản phẩm user này đăng
             </button>
           </Link>
         </td>

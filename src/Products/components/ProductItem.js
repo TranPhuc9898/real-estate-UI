@@ -125,14 +125,14 @@ const ProductItem = (props) => {
                       class="btn btn-success"
                       onClick={onSubmitHandler}
                     >
-                      Submit
+                      Duyệt bài
                     </button>
                     <button
                       type="button"
                       class="btn btn-danger"
-                      onClick={onDeleteHandler}
+                      onClick={() => {if(window.confirm("Bạn có chắc chắn muốn xoá chứ?")){ this.onDeleteHandler()}}}
                     >
-                      Delete
+                      Xoá bài
                     </button>
                   </div>
                 )}
