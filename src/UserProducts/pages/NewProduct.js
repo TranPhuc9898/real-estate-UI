@@ -137,7 +137,7 @@ const NewPlace = () => {
           type="text"
           label="Tiêu đề"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid title."
+          errorText="Vui lòng nhập tên tiêu đề"
           onInput={inputHandler}
         />
         <br />
@@ -158,7 +158,7 @@ const NewPlace = () => {
           element="textarea"
           label="Mô tả"
           validators={[VALIDATOR_MINLENGTH(5)]}
-          errorText="Please enter a valid description (at least 5 characters)."
+          errorText="Vui lòng nhập mô tả tối thiếu 5 từ"
           onInput={inputHandler}
         />
         <br />
@@ -169,7 +169,7 @@ const NewPlace = () => {
           element="input"
           label="Diện tích (m2)"
           validators={[VALIDATOR_PRICE()]}
-          errorText="Please enter a valid area."
+          errorText="Vui lòng nhập diện tích"
           onInput={inputHandler}
         />
         <br />
@@ -179,7 +179,7 @@ const NewPlace = () => {
           element="input"
           label="Giá bán(VND)"
           validators={[VALIDATOR_PRICE()]}
-          errorText="Please enter a valid Price."
+          errorText="Vui lòng nhập giá tiền"
           onInput={inputHandler}
         />
         <br />
@@ -221,7 +221,7 @@ const NewPlace = () => {
           element="input"
           label="Đường"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid Street."
+          errorText="Vui lòng nhập tên đường"
           onInput={inputHandler}
         />
         <br />

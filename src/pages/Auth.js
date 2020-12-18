@@ -125,7 +125,7 @@ const Auth = () => {
               type="text"
               label="Tên"
               validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a name."
+              errorText="Vui lòng nhập tên tài khoản"
               onInput={inputHandler}
             />
           )}
@@ -137,7 +137,7 @@ const Auth = () => {
             type="email"
             label="E-Mail"
             validators={[VALIDATOR_EMAIL()]}
-            errorText="Please enter a valid email address."
+            errorText="Vui lòng nhập E-mail"
             onInput={inputHandler}
           />
           <br />
@@ -148,7 +148,7 @@ const Auth = () => {
             type="password"
             label="Mật Khẩu"
             validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid password, at least 5 characters."
+            errorText="Vui lòng nhập mật khẩu trên 5 ký tự."
             onInput={inputHandler}
           />
           <br />

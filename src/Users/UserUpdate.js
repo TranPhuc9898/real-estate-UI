@@ -135,7 +135,7 @@ const UpdateUser = () => {
             type="text"
             label="Name"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid name."
+            errorText="Vui lòng nhập tên"
             onInput={inputHandler}
             initialValue={loadedUser.name}
             initialValid={true}
@@ -146,7 +146,7 @@ const UpdateUser = () => {
             element="input"
             label="Email"
             validators={[VALIDATOR_EMAIL()]}
-            errorText="Please enter a valid email"
+            errorText="Vui lòng nhập E-mail"
             onInput={inputHandler}
             initialValue={loadedUser.email}
             initialValid={true}
@@ -157,7 +157,7 @@ const UpdateUser = () => {
             element="input"
             label="Password"
             validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid password."
+            errorText="Vui lòng nhập mật khẩu trên 5 ký tự"
             onInput={inputHandler}
             initialValue={loadedUser.password}
             initialValid={true}
@@ -168,7 +168,7 @@ const UpdateUser = () => {
             element="input"
             label="Role"
             validators={[VALIDATOR_ROLE()]}
-            errorText="Please enter 1 for Admin or 0 for Guest."
+            errorText="Nhập 1 là Admin. Nhập 0 là Khách"
             onInput={inputHandler}
             initialValue={loadedUser.role}
             initialValid={true}
