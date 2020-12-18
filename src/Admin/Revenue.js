@@ -79,16 +79,17 @@ const Revenue = (props) => {
               value={value}
               calendarType="ISO 8601"
             />
+            {console.log(value)}
             <i className="lnr lnr-pointer-down" style={{marginLeft:"140px"}}></i><Link to="/totalRevenue"><h1>Tổng doanh thu</h1></Link><i className="lnr lnr-pointer-up" style={{marginLeft:"140px"}}></i>
             <p style={{ color: "red", marginTop:"40px" }}>
-              Tổng số sản phẩm đã bán ngày {value.toLocaleString('en-GB', { timeZone: 'UTC' }).split(",")[0]} : {currentPosts.length}
+              Tổng số sản phẩm đã bán ngày {value.toLocaleString().slice(10,20)} : {currentPosts.length}
             </p>
           </div>
           <div>
-            <p style={{ color: "red" }}>tổng tiền đã bán ngày {value.toLocaleString('en-GB', { timeZone: 'UTC' }).split(",")[0]}: {total} tỉ</p>
+            <p style={{ color: "red" }}>tổng tiền đã bán ngày {value.toLocaleString().slice(10,20)}: {total} tỉ</p>
           </div>
           <div>
-            <p style={{ color: "red" }}>tổng doanh thu ngày {value.toLocaleString('en-GB', { timeZone: 'UTC' }).split(",")[0]}: {total * 0.2} tỉ</p>
+            <p style={{ color: "red" }}>tổng doanh thu ngày {value.toLocaleString().slice(10,20)}: {total * 0.2} tỉ</p>
           </div>
           <button
             type="button"

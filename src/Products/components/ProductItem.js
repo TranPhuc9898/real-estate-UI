@@ -120,6 +120,7 @@ const ProductItem = (props) => {
 
                 {auth.isAdmin && (
                   <div>
+
                     <button
                       type="button"
                       class="btn btn-success"

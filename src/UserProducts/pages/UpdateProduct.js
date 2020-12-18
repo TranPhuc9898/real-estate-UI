@@ -200,7 +200,7 @@ const UpdatePlace = () => {
           />
           <br/><br/>
           <Button type="submit">
-            UPDATE PLACE
+            Cật Nhật
           </Button>
         </form>
       )}
