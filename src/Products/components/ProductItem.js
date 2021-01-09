@@ -119,8 +119,7 @@ const ProductItem = (props) => {
                 </Link>
 
                 {auth.isAdmin && (
-                  <div>
-
+                  <div className="container">
                     <button
                       type="button"
                       class="btn btn-success"
@@ -129,6 +128,7 @@ const ProductItem = (props) => {
                       Duyệt bài
                     </button>
                     <button
+                    style={{marginLeft:"20px"}}
                       type="button"
                       class="btn btn-danger"
                       onClick={() => {if(window.confirm("Bạn có chắc chắn muốn xoá chứ?")){ this.onDeleteHandler()}}}

@@ -5,7 +5,7 @@ import Input from "../shared/FormElements/Input";
 import Button from "../shared/FormElements/Button";
 import ErrorModal from "../shared/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/UIElements/LoadingSpinner";
-import ImageUpload from '../shared/FormElements/ImageUpload'
+import ImageUpload from "../shared/FormElements/ImageUpload";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -42,7 +42,7 @@ const Auth = () => {
         {
           ...formState.inputs,
           name: undefined,
-          image: undefined
+          image: undefined,
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -56,8 +56,8 @@ const Auth = () => {
           },
           image: {
             value: null,
-            isValid:false
-          }
+            isValid: false,
+          },
         },
         false
       );
@@ -67,11 +67,10 @@ const Auth = () => {
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
-  
+
     if (isLoginMode) {
       try {
-        
-        const responseData =  await sendRequest(
+        const responseData = await sendRequest(
           "http://localhost:5000/api/users/login",
           "POST",
           JSON.stringify({
@@ -82,33 +81,27 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-          alert("Đăng nhập thành công")
+        alert("Đăng nhập thành công");
         auth.login(responseData.user.id);
-        auth.authorization(responseData.user.role)
-      } catch (error) {
-        
-      }
-      
+        auth.authorization(responseData.user.role);
+      } catch (error) {}
     } else {
       try {
         const formData = new FormData();
-        formData.append('email',formState.inputs.email.value )
-        formData.append('name',formState.inputs.name.value )
-        formData.append('password',formState.inputs.password.value )
-        formData.append('image',formState.inputs.image.value )
-        const responseData =  await sendRequest(
-          "http://localhost:5000/api/users/signup", 
+        formData.append("email", formState.inputs.email.value);
+        formData.append("name", formState.inputs.name.value);
+        formData.append("password", formState.inputs.password.value);
+        formData.append("image", formState.inputs.image.value);
+        const responseData = await sendRequest(
+          "http://localhost:5000/api/users/signup",
           "POST",
           formData
         );
-          alert("Đăng kí thành công!")
+        alert("Đăng kí thành công!");
         auth.login(responseData.user.id);
-      } catch (err) {
-      }
+      } catch (err) {}
     }
   };
-
-
 
   return (
     <React.Fragment>
@@ -129,7 +122,7 @@ const Auth = () => {
               onInput={inputHandler}
             />
           )}
-          
+
           <br />
           <Input
             element="input"
@@ -152,17 +145,23 @@ const Auth = () => {
             onInput={inputHandler}
           />
           <br />
-          
-          {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler}/>}
-          <br/>
- 
+
+          {!isLoginMode && (
+            <ImageUpload center id="image" onInput={inputHandler} />
+          )}
+          <br />
+
           <Button type="submit" disabled={!formState.isValid}>
             {isLoginMode ? "Đăng nhập" : "Đăng kí"}
           </Button>
-        </form>
-        <Button inverse onClick={switchModeHandler}>
+          <br/>
+          <br/>
+
+          <Button inverse onClick={switchModeHandler} >
           {isLoginMode ? "Đăng kí" : "Đăng nhập"}
         </Button>
+        </form>
+
       </Card>
     </React.Fragment>
   );
