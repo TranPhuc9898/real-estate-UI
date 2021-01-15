@@ -4,6 +4,7 @@ import { AuthContext } from "../../shared/context/auth-context";
 
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/UIElements/ErrorModal";
+import axios from "axios";
 
 const ProductItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -29,6 +30,36 @@ const ProductItem = (props) => {
     border: "1px solid #bbb",
     boxSizing: "border-box",
   };
+  //like
+  const [likeProduct, setLikeProduct] = useState();
+  const [id, setId] = useState();
+  const productId = useParams().productId;
+
+  const getLike = () => {
+    return axios.get(`http://localhost:5000/api/like/${props.id}`);
+  };
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/like/${props.id}`).then((res) => {});
+  }, []);
+
+  const handleSumit = async () => {
+    axios
+      .post(`http://localhost:5000/api/like/${props.id}`)
+
+      .then(() => {
+        getLike().then((res) => {
+          setLikeProduct(res.data.likes);
+          console.log("resdata", res.data);
+        });
+      });
+  };
+
+  useEffect(() => {
+    getLike().then((res) => {
+      setLikeProduct(res.data.likes);
+    });
+  }, []);
 
   //Admin xác nhận sản phẩm để được hiển thị lên trang chủ
   const onSubmitHandler = async (event) => {
@@ -55,7 +86,7 @@ const ProductItem = (props) => {
         `http://localhost:5000/api/products/${props.id}`,
         "DELETE"
       );
-      alert("Xoá thành công")
+      alert("Xoá thành công");
       history.push("/" + auth.userId + "/submit");
     } catch (error) {}
   };
@@ -89,7 +120,7 @@ const ProductItem = (props) => {
 
             <div className="desc">
               <div className="top d-flex justify-content-between">
-                <h4 style={{height:"62px"}}>
+                <h4 style={{ height: "62px" }}>
                   <a>{props.title}</a>
                 </h4>
               </div>
@@ -128,10 +159,14 @@ const ProductItem = (props) => {
                       Duyệt bài
                     </button>
                     <button
-                    style={{marginLeft:"20px"}}
+                      style={{ marginLeft: "20px" }}
                       type="button"
                       class="btn btn-danger"
-                      onClick={() => {if(window.confirm("Bạn có chắc chắn muốn xoá chứ?")){ this.onDeleteHandler()}}}
+                      onClick={() => {
+                        if (window.confirm("Bạn có chắc chắn muốn xoá chứ?")) {
+                          this.onDeleteHandler();
+                        }
+                      }}
                     >
                       Xoá bài
                     </button>
@@ -140,11 +175,13 @@ const ProductItem = (props) => {
               </div>
               <div className="bottom d-flex justify-content-start">
                 <label style={style}>
-                  <i
-                    className="far fa-heart fa-lg"
-                    style={{ color: "red" }}
-                  ></i>{" "}
-                  {props.like.length} Lượt thích
+                  {/* <button onChange={handleSumit()}> */}
+
+                  <button onClick={handleSumit}>
+                    <i className="lnr lnr-eye">{likeProduct} like</i>
+                  </button>
+
+                  {/* </button> */}
                 </label>
                 <label style={style}>
                   <i className="lnr lnr-eye"></i> {props.views} Lượt xem
